@@ -2,7 +2,7 @@ class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
     }
-
+/*
     preload() {
         this.load.image('falling', './assets/Falling.png'); //unused asset
         this.load.image('menu', './assets/MenuScreen.png');
@@ -20,13 +20,7 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, borderUISize + borderPadding, 
             game.config.width, 
             borderUISize * 2, 0x00FF00).setOrigin(0,0);
-        
-        // I think this white border looks ugly as-is
-        /*this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);*/
-
+    
         this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running', 0).setOrigin(0, 0);
         const playerAnimation = this.anims.create({
             key: 'running1',
@@ -35,16 +29,6 @@ class Play extends Phaser.Scene {
         });
         this.pl1.play({ key: 'running1', repeat: -1 });
 
-        /**
-         * The platforms befave similarly to a treadmill - they move to the
-         * left and return to the right side of the screen when they
-         * hit the edge.
-         * Each platform is 1/20 of the screen's width, but all 21 platforms
-         * are visible at the same time since the leftmost and rightmost
-         * platforms are partially offscreen.
-         * The platforms all start at their lowest possible height to give
-         * the player some time to think before the randomness kicks in.
-         */
         this.plats = new Array(21); 
         for (let i = 0; i < 21; i++){
             this.plats[i] = new Plat(this, 32 * i, 392, 'plat', 0).setOrigin(0, 0);
@@ -76,31 +60,6 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-
-        //how not to handle jump animations
-        /*if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.pl1.alpha = 0;
-            this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'jump').setOrigin(0.5, 0);
-        }*/
-        //please for the love of god, don't implement it like this
-
-        /**
-         * This game's collision works by having the player store the height
-         * of the floor below them, and treating that floor as if it extends
-         * throughout the whole space. Naturally, we need to update the
-         * stored floor height or else we'd fall through existing platforms
-         * and walk on air.
-         * Platforms move 4 pixels per frame, meaning they will return to
-         * their previous position after 120 frames. Additionally, their
-         * x-position will always be a multiple of 4, meaning I can choose
-         * to update the player's stored floor height whenever their x-
-         * position is the same as the player's.
-         * The player stores two floor heights. One is of the floor at
-         * their back side, and one is of the floor 16 pixels to the right
-         * of their back side.
-         * Collision checking between the player and their stored floor
-         * heights is handled entirely in the player class.
-         */
         if(true) {
             this.pl1.update();
             for(let i = 0; i < 21; i++){
@@ -119,4 +78,75 @@ class Play extends Phaser.Scene {
             this.scene.start("gameOverScene"); //Game over when the player falls offscreen
         }
     }
+}*/
+
+    preload() {
+        //load our images or sounds 
+        this.load.image("mc", "images/TempMC.png");
+        this.load.image("plat", "images/TempPlatform.png");
+    }
+    create() {
+        // green UI background
+        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
+        // white borders
+        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0)
+        this.mc = new Player(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'mc').setOrigin(0.5, 0);
+        //this.power = 0;
+        //define our objects
+        //
+        //
+        //ball
+       // this.mc = this.physics.add.sprite(this.sys.game.config.width / 2, 0, "mc");
+        //this.mc.setGravityY(100);
+        //
+        //
+        //
+        //ground
+        //
+        //
+        //this.ground = new Plat(this, 32 * i, 392, 'plat', 0).setOrigin(0, 0);
+        //ground.displayWidth = this.sys.game.config.width * 1.1;
+        //ground.setImmovable();
+        //
+        //
+        //
+        //set collider
+        //
+        //
+        //this.physics.add.collider(this.mc, ground);
+        //this.input.on('pointerdown', this.startJump, this);
+        //this.input.on('pointerup', this.endJump, this);
+    }
+    /*
+    start the jump when the pointer goes down
+     */
+    //startJump() {
+        //this.timer = this.time.addEvent({
+            //delay: 100,
+            //callback: this.tick,
+            //callbackScope: this,
+            //loop: true
+        //});
+        // this.ball.setVelocityY(-100);
+    //}
+    /*
+    end the jump when the pointer is up
+     */
+    //endJump() {
+        //this.timer.remove();
+        //this.mc.setVelocityY(-this.power * 100);
+        //this.power = 0;
+    //}
+    //tick() {
+        //if (this.power < 5) {
+            //this.power += .1;
+            //console.log(this.power);
+        //}
+    //}
+    //update() {
+        //constant running loop
+    //}
 }
