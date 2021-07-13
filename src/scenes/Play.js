@@ -90,7 +90,8 @@ class Play extends Phaser.Scene {
         this.mc.setBounce(0.2);
         this.mc.setCollideWorldBounds(true);
 
-        this.plat = new Plat(this, 32 * i, 392, 'plat', 0).setOrigin(0, 0);
+        this.plat = new Plat(this, 32, 392, 'plat', 0).setOrigin(0, 0);
+        cursors = this.input.keyboard.createCursorKeys();
     }
     update () {
         if (cursors.left.isDown)
