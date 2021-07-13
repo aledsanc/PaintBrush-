@@ -91,14 +91,14 @@ class Play extends Phaser.Scene {
         this.mc.setCollideWorldBounds(true);
 
         this.plat = new Plat(this, 32, 392, 'plat', 0).setOrigin(0, 0);
-        cursors = this.input.keyboard.createCursorKeys();
+        this.cursors = this.input.keyboard.createCursorKeys();
     }
     update () {
-        if (cursors.left.isDown)
+        if (this.cursors.left.isDown)
         {
             player.setVelocityX(-160);
         } 
-        else if (cursors.right.isDown)
+        else if (this.cursors.right.isDown)
         {
             player.setVelocityX(160);    
         }
@@ -106,7 +106,7 @@ class Play extends Phaser.Scene {
         {
             player.setVelocityX(0);    
         }
-        if (cursors.up.isDown && player.body.touching.down)
+        if (this.cursors.up.isDown && this.player.body.touching.down)
         {
             player.setVelocityY(-330);
         }
