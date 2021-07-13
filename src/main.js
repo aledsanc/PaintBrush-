@@ -1,5 +1,5 @@
 let config = {
-    type: Phaser.CANVAS,
+    type: Phaser.ARCADE,
     width: 1280,
     height: 720,
     scene: [Menu, Play, GameOver, Help]

@@ -96,7 +96,7 @@ class Play extends Phaser.Scene {
         if (cursors.left.isDown)
         {
             player.setVelocityX(-160);
-        }
+        } 
         else if (cursors.right.isDown)
         {
             player.setVelocityX(160);    
