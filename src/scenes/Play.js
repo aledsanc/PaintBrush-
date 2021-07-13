@@ -82,17 +82,10 @@ class Play extends Phaser.Scene {
 
     preload() {
         //load our images or sounds 
-        this.load.image("mc", "images/TempMC.png");
-        this.load.image("plat", "images/TempPlatform.png");
+        this.load.image("mc", "assets/TempMC.png");
+        this.load.image("plat", "assets/TempPlatform.png");
     }
     create() {
-        // green UI background
-        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
-        // white borders
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0)
         this.mc = new Player(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'mc').setOrigin(0.5, 0);
         //this.power = 0;
         //define our objects
