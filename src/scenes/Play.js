@@ -83,63 +83,31 @@ class Play extends Phaser.Scene {
     preload() {
         //load our images or sounds 
         this.load.image("mc", "assets/TempMC.png");
-        this.load.image("plat", "assets/TempPlatform.png");
+        this.load.image("plat", "assets/TempPlatform.png"); 
     }
     create() {
         this.mc = new Player(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'mc').setOrigin(0.5, 0);
-        //this.power = 0;
-        //define our objects
-        //
-        //
-        //ball
-       // this.mc = this.physics.add.sprite(this.sys.game.config.width / 2, 0, "mc");
-        //this.mc.setGravityY(100);
-        //
-        //
-        //
-        //ground
-        //
-        //
-        //this.ground = new Plat(this, 32 * i, 392, 'plat', 0).setOrigin(0, 0);
-        //ground.displayWidth = this.sys.game.config.width * 1.1;
-        //ground.setImmovable();
-        //
-        //
-        //
-        //set collider
-        //
-        //
-        //this.physics.add.collider(this.mc, ground);
-        //this.input.on('pointerdown', this.startJump, this);
-        //this.input.on('pointerup', this.endJump, this);
+        this.mc.setBounce(0.2);
+        this.mc.setCollideWorldBounds(true);
+
+        this.plat = new Plat(this, 32 * i, 392, 'plat', 0).setOrigin(0, 0);
     }
-    /*
-    start the jump when the pointer goes down
-     */
-    //startJump() {
-        //this.timer = this.time.addEvent({
-            //delay: 100,
-            //callback: this.tick,
-            //callbackScope: this,
-            //loop: true
-        //});
-        // this.ball.setVelocityY(-100);
-    //}
-    /*
-    end the jump when the pointer is up
-     */
-    //endJump() {
-        //this.timer.remove();
-        //this.mc.setVelocityY(-this.power * 100);
-        //this.power = 0;
-    //}
-    //tick() {
-        //if (this.power < 5) {
-            //this.power += .1;
-            //console.log(this.power);
-        //}
-    //}
-    //update() {
-        //constant running loop
-    //}
+    update () {
+        if (cursors.left.isDown)
+        {
+            player.setVelocityX(-160);
+        }
+        else if (cursors.right.isDown)
+        {
+            player.setVelocityX(160);    
+        }
+        else
+        {
+            player.setVelocityX(0);    
+        }
+        if (cursors.up.isDown && player.body.touching.down)
+        {
+            player.setVelocityY(-330);
+        }
+    }
 }
