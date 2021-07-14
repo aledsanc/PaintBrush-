@@ -7,7 +7,7 @@ class Help extends Phaser.Scene {
 
     }
     preload() {
-        // any asset for this scene
+        
         this.load.image('help', './assets/HelpScreen.png');
     }
     create() {

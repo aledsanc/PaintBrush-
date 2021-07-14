@@ -9,22 +9,17 @@ class Menu extends Phaser.Scene {
 
     }
     preload() {
-        // any asset for this scene
+        
         this.load.image('menu', './assets/MenuScreen.png');
         this.load.audio('sfx_bgm', './assets/bgm.wav');
     }
     create(){    
-        /**
-         * checks if music is already playing when we enter this scene
-         * since the first sound loaded should be the BGM
-         */
+        
         var allsound = this.sound.getAll();
         if((allsound[0]) == null){
             this.song = this.sound.add('sfx_bgm',{volume: 0.5, loop: true});
         }
-        allsound = null; //i don't know if there's a memory leak without this statement
-
-        //pre-rendered menu image
+        allsound = null; 
         this.background = this.add.image(game.config.width/2, game.config.height/2, 'menu');        
         
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
